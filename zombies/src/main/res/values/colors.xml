@@ -1,0 +1,16 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="selectable_brown">#ff3f2a22</color>
+    <color name="white">#ffffffff</color>
+
+    <color name="side_menu_list_divider">@color/selectable_brown</color>
+    <color name="side_menu_list_background">@color/white</color>
+    <color name="side_menu_item_background_pressed">#ff237d82</color>
+    <color name="side_menu_item_background">#ff237d82</color>
+
+    <color name="joinable_game_selected">#ffffbe8e</color>
+    <color name="joinable_game_not_selected">@color/white</color>
+
+
+</resources>

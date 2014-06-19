@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Zombies!</string>
+
+    <string name="got_it">Got it, Thanks.</string>
+    <string name="update_location">update location</string>
+    <string name="location">location</string>
+    <string name="title_activity_pre_game_activities">PreGameActivities</string>
+
+    <string name="new_game_label">New Game</string>
+    <string name="saved_game_label">Saved Game</string>
+    <string name="new_game_where_label">Where</string>
+    <string name="new_game_where_value">Eagan, MN</string>
+    <string name="new_game_when_label">Day</string>
+    <string name="new_game_when_value">5/14/2014</string>
+    <string name="new_game_from_label">From</string>
+    <string name="new_game_from_value">16:00</string>
+    <string name="new_game_until_label">Until</string>
+    <string name="new_game_until_value">24:00</string>
+    <string name="new_game_max_players_label">Max Players</string>
+    <string name="new_game_max_players_value">50</string>
+    <string name="new_game_next_label">Next</string>
+    <string name="new_game_title_label">Title</string>
+    <string name="new_game_title_value">Rising dawn</string>
+    <string name="new_game_current_players_value">20</string>
+    <string name="view_active_games_detail_accept">Jump in</string>
+    <string name="view_joinable_games_detail_accept">Join In</string>
+    <string name="view_joinable_games_detail_decline">Decline</string>
+    <string name="in_game_current_pin_type">human</string>
+
+    <string name="lctn_nlzr_how_to">How To\'s:</string>
+    <string name="lctn_nlzr_ht_new_marker">Create the Marker</string>
+    <string name="lctn_nlzr_ht_remove_marker">Remove the Marker</string>
+    <string name="lctn_nlzr_ht_replace_marker">Replace the Marker</string>
+    <string name="lctn_nlzr_ht_expand_ring">Expand the ring</string>
+    <string name="lctn_nlzr_new_marker">To make a new marker, tap the map</string>
+    <string name="lctn_nlzr_replace_marker">To replace an existing marker, tap the map</string>
+    <string name="lctn_nlzr_remove_marker">To remove a marker, long press away from the marker</string>
+    <string name="lctn_nlzr_save_marker">Save the ring!</string>
+    <string name="lctn_nlzr_expand_ring">To expand the ring, long press the marker, once it frees up drag it away from the center of the ring.</string>
+    <string name="lctn_nlzr_swipe">Swipe for options!</string>
+    <string name="view_store_ring_detail_title_label">Title</string>
+    <string name="view_store_ring_detail_title_value">Where we\'at?</string>
+    <string name="view_store_ring_detail_ring_size_label">Field size (meters)</string>
+    <string name="view_store_ring_detail_ring_size_value">200</string>
+    <string name="view_store_ring_detail_verify">Looks Good</string>
+
+</resources>

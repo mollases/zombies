@@ -1,0 +1,219 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    tools:context="com.mollases.zombies.pregame.newgame.GameSelectorFragment">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/game_selector_new_game_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/new_game_label"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/game_selector_saved_game_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/saved_game_label"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+
+        <TableLayout
+            android:id="@+id/game_selector_new_game_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:dividerPadding="15dip"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:id="@+id/game_selector_title_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/game_selector_title_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/new_game_title_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/selectable_brown" />
+
+                <EditText
+                    android:id="@+id/game_selector_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/new_game_title_value"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/game_selector_location_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/game_selector_location_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/new_game_where_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/selectable_brown" />
+
+                <TextView
+                    android:id="@+id/game_selector_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/new_game_where_value"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/game_selector_date_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/new_game_when_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/selectable_brown" />
+
+
+                <DatePicker
+                    android:id="@+id/game_selector_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:calendarViewShown="false"
+
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="@string/new_game_when_value"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/game_selector_from_time_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/new_game_from_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/selectable_brown" />
+
+
+                <TimePicker
+                    android:id="@+id/game_selector_from_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="time"
+                    android:text="@string/new_game_from_value"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/game_selector_until_time_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/new_game_until_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/selectable_brown" />
+
+
+                <TimePicker
+                    android:id="@+id/game_selector_until_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="time"
+                    android:text="@string/new_game_until_value"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/game_selector_max_people_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/game_selector_max_people_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/new_game_max_players_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/selectable_brown" />
+
+                <TextView
+                    android:id="@+id/game_selector_max_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/new_game_max_players_value"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/game_selector_new_game_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="40dp"
+                android:gravity="center"
+                android:text="@string/new_game_next_label"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/selectable_brown" />
+        </TableLayout>
+
+
+    </LinearLayout>
+</ScrollView>

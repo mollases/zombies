@@ -1,0 +1,61 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_store_ring_detail_table"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:dividerPadding="15dip"
+    android:stretchColumns="*"
+
+    tools:context="com.mollases.zombies.pregame.locationanalyzer.ZombMapLocationAnalyzer">
+
+    <TableRow
+        android:id="@+id/view_store_ring_detail_title_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/view_store_ring_detail_title_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/view_store_ring_detail_title_label"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/selectable_brown" />
+
+        <EditText
+            android:id="@+id/view_store_ring_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/view_store_ring_detail_title_value"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/view_store_ring_detail_ring_size_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/view_store_ring_detail_ring_size_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/view_store_ring_detail_ring_size_label"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/selectable_brown" />
+
+        <TextView
+            android:id="@+id/view_store_ring_detail_ring_size_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/view_store_ring_detail_ring_size_value"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+</TableLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/side_menu_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="15">
+
+        <com.google.android.gms.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"
+            android:layout_gravity="left|top"
+
+            android:padding="12dip"
+
+            android:background="#AA000000"
+            android:textColor="#ffffffff"
+
+            android:text="Swipe for options!" />
+
+    </FrameLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/lctn_nlzr_save_marker"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+
+            android:background="#AA000000"
+            android:textColor="#ffffffff"
+
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:onClick="onSavePressed" />
+
+    </LinearLayout>
+
+    <!-- Listview to display slider menu -->
+    <ListView
+        android:id="@+id/side_menu_list"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@color/side_menu_list_background"
+        android:choiceMode="singleChoice"
+        android:divider="@color/side_menu_list_divider"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/side_menu_item_selector" />
+</android.support.v4.widget.DrawerLayout>
