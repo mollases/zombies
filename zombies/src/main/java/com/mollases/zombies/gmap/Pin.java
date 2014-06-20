@@ -37,9 +37,9 @@ public class Pin {
     /**
      * Initializes a player, along with their corresponding marker position
      *
-     * @param type
-     * @param lat
-     * @param lng
+     * @param type type of pin
+     * @param lat latitude on the gmap
+     * @param lng longitude on the gmap
      */
     public Pin(Type type, double lat, double lng) {
         this.type = type;
@@ -176,7 +176,7 @@ public class Pin {
         if (type != this.type) {
             updateType(type);
         }
-        //TODO: NPE occures here (randomly?)
+
         this.marker.setPosition(new LatLng(this.lat, this.lng));
     }
 

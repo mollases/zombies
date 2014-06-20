@@ -87,7 +87,8 @@ public enum ZParam {
 
     /**
      * Gets the server translated name of the ZParam
-     * @return  ZParam's server side name
+     *
+     * @return ZParam's server side name
      */
     public String getName() {
         return name;

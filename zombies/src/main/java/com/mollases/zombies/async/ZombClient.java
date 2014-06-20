@@ -84,7 +84,7 @@ public class ZombClient {
      * @throws IOException thrown from the underlying execute method
      */
     public HttpResponse execute() throws IOException {
-        Log.i(TAG,"Executing " +service.name());
+        Log.i(TAG, "Executing " + service.name());
         service.addMethodCall(data);
         service.assertValidity(data);
 
@@ -98,7 +98,6 @@ public class ZombClient {
                 postParameters.add(new BasicNameValuePair(entry.getKey().getName(), entry.getValue()));
             }
             ((HttpPost) base).setEntity(new UrlEncodedFormEntity(postParameters));
-
 
         } else {
             String completeUrl = ZOMB_URL + INITIAL_QUERY;

@@ -130,16 +130,15 @@ public enum ZService {
      * as the service call itself (Service#addMethodCall(...))
      *
      * @param data the map to check
-     * @return if it passed all the checks
      */
     void assertValidity(Map<ZParam, String> data) {
         if (!fullyImplemented) {
             Log.w(TAG, method + " not fully implemented!");
         }
 
-        for(ZParam param : requiredZParams){
-            if(data.get(param) == null){
-                throw new IllegalStateException("Missing "+ param.name() + " parameter");
+        for (ZParam param : requiredZParams) {
+            if (data.get(param) == null) {
+                throw new IllegalStateException("Missing " + param.name() + " parameter");
             }
         }
     }
