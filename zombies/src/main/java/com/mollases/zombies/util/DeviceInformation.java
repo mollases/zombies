@@ -15,6 +15,10 @@ public class DeviceInformation {
     private static final String PROPERTY_REG_ID = "registration_id";
     private static final String CURRENT_GAME_ID = "in_game_id";
 
+    private static final int minPerHour = 60;
+    private static final int secPerMin = 60;
+    private static final int millsecPerSec = 1000;
+
     public static int getRegistrationId(Context context) {
         final SharedPreferences prefs = getAppPreferences(context);
         int registrationId = prefs.getInt(PROPERTY_REG_ID, DEFAULT_REG_ID);
@@ -64,6 +68,6 @@ public class DeviceInformation {
     }
 
     public static int getTimeZoneByHourlyOffset() {
-        return TimeZone.getDefault().getOffset(System.currentTimeMillis()) / 60 / 60 / 1000;
+        return TimeZone.getDefault().getOffset(System.currentTimeMillis()) / minPerHour / secPerMin / millsecPerSec;
     }
 }

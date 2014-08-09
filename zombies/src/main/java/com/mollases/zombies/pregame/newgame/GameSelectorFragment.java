@@ -66,7 +66,7 @@ public class GameSelectorFragment extends Fragment implements View.OnClickListen
     private void onMaxPlayersChanged(View view) {
         generateAlert("How many people?",
                 (TextView) view.findViewById(R.id.game_selector_max_people),
-                Arrays.asList("1", "2", "20", "50", "infinite")).show();
+                Arrays.asList("5", "10", "20", "50", "infinite")).show();
     }
 
     private void onNextButtonPressed() {
@@ -150,42 +150,10 @@ public class GameSelectorFragment extends Fragment implements View.OnClickListen
                 onMaxPlayersChanged(v);
                 break;
             }
-            case R.id.game_selector_new_game_filter: {
-                swap(true);
-                break;
-            }
-            case R.id.game_selector_saved_game_filter: {
-                swap(false);
-                break;
-            }
             case R.id.game_selector_new_game_next: {
                 onNextButtonPressed();
                 break;
             }
         }
-    }
-
-    private void swap(boolean isNew) {
-        final View mainScreen;
-        final View grayScreen;
-        final View activeFilter;
-        final View inactiveFilter;
-
-        if (isNew) {
-            grayScreen = null;
-            mainScreen = getActivity().findViewById(R.id.game_selector_new_game_table);
-            activeFilter = getActivity().findViewById(R.id.game_selector_saved_game_filter);
-            inactiveFilter = getActivity().findViewById(R.id.game_selector_new_game_filter);
-        } else {
-            mainScreen = null;
-            grayScreen = getActivity().findViewById(R.id.game_selector_new_game_table);
-            inactiveFilter = getActivity().findViewById(R.id.game_selector_saved_game_filter);
-            activeFilter = getActivity().findViewById(R.id.game_selector_new_game_filter);
-        }
-
-        mainScreen.setVisibility(View.VISIBLE);
-        grayScreen.setVisibility(View.GONE);
-        inactiveFilter.setBackgroundColor(getResources().getColor(R.color.common_signin_btn_dark_text_disabled));
-        activeFilter.setBackgroundColor(getResources().getColor(android.R.color.white));
     }
 }

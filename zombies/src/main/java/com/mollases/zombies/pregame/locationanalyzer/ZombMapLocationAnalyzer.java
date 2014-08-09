@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,9 +16,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mollases.zombies.R;
-import com.mollases.zombies.gmap.Zone;
-
-import java.util.Set;
 
 /**
  * Created by mollases on 4/11/14.
@@ -179,7 +175,7 @@ public class ZombMapLocationAnalyzer extends Activity {
         alert.setTitle(R.string.lctn_nlzr_save_marker);
 
         final View v = View.inflate(this, R.layout.view_store_ring_detail, null);
-        ((TextView) v.findViewById(R.id.view_store_ring_detail_ring_size_value)).setText(String.valueOf(String.valueOf(delta)));
+        ((TextView) v.findViewById(R.id.view_store_ring_detail_ring_size_value)).setText(String.valueOf(delta));
 
         alert.setView(v);
 
