@@ -1,7 +1,6 @@
 package com.mollases.zombies.ingame;
 
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.mollases.zombies.async.ZParam;
 import com.mollases.zombies.async.ZService;
@@ -32,7 +31,7 @@ public class UpdatePlayerPinLocation extends AsyncTask<Void, Void, JSONObject> {
         try {
             int gameId = DeviceInformation.getInGameId(zombMapFragment);
             if (gameId != -1) {
-                ZombClient client = new ZombClient(ZService.IN_GAME_UPDATE_PLAYER_PIN);
+                ZombClient client = new ZombClient(ZService.IN_GAME_RETRIEVE_PLAYER_PIN_LOCATION);
                 client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(zombMapFragment));
                 client.add(ZParam.GAME_ID, String.valueOf(gameId));
                 return AsyncHelper.pullJSONObject(client.execute());

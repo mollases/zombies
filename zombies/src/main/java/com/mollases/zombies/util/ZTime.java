@@ -17,6 +17,11 @@ public class ZTime {
 
     private final GregorianCalendar calendar;
 
+    public ZTime(){
+        calendar = new GregorianCalendar();
+    }
+
+
     public ZTime(String time) {
         String[] fields = time.split(" ");
 

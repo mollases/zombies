@@ -1,7 +1,6 @@
 package com.mollases.zombies.ingame;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import com.mollases.zombies.R;
 import com.mollases.zombies.gmap.Pin;
 
-import org.w3c.dom.Text;
 
 /**
  * Created by mollases on 5/28/14.

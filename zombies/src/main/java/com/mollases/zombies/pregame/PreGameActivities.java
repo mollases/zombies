@@ -27,10 +27,7 @@ import com.mollases.zombies.util.DeviceInformation;
 import java.util.ArrayList;
 
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
+
 public class PreGameActivities extends Activity {
     private static final String TAG = PreGameActivities.class.getName();
     private DrawerLayout mDrawerLayout;

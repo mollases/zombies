@@ -1,9 +1,5 @@
 package com.mollases.zombies.gmap;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import java.util.List;
-
 /**
  * Created by mollases on 3/22/14.
  */

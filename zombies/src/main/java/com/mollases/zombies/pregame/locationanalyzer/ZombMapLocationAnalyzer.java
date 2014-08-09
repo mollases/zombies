@@ -44,8 +44,6 @@ public class ZombMapLocationAnalyzer extends Activity {
     private Circle circle;
     private double delta;
 
-    private Set<Pair<String, Integer>> pairs;
-
     public static double haversine(double lat1, double lon1, double lat2, double lon2) {
         double r = 6731000;
         double dLat = Math.toRadians(lat2 - lat1);
@@ -63,7 +61,6 @@ public class ZombMapLocationAnalyzer extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_analyzer);
-
 
         mMapView = (MapView) findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
@@ -174,25 +171,6 @@ public class ZombMapLocationAnalyzer extends Activity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mMapView.onSaveInstanceState(outState);
-    }
-
-    /**
-     * When using the ActionBarDrawerToggle, you must call it during onPostCreate() and
-     * onConfigurationChanged()...
-     */
-
-
-    public void setMapperId(int mapperId) {
-//        zombLocationAnalyzerListenerClient.setMapperId(mapperId);
-    }
-
-    public void setMapperList(Set<Pair<String, Integer>> pairs) {
-
-        this.pairs = pairs;
-    }
-
-    public void setCurrentZone(Zone zone) {
-//        zombLocationAnalyzerListenerClient.setZone(zone);
     }
 
     public void onSavePressed(View view) {

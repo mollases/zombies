@@ -7,7 +7,6 @@ package com.mollases.zombies.pregame.sidemenu;
  */
 public enum MenuOption {
 
-
     GAME_CREATOR("Set up a Game", "Create a game"),
     GAME_AVAIL_VIEWER("View Available Games", "Available Games"),
     GAME_ACTIVE_VIEWER("View Active Games", "Active Games"),

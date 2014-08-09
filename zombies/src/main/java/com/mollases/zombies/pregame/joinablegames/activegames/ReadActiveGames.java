@@ -11,6 +11,7 @@ import com.mollases.zombies.pregame.joinablegames.JoinableGame;
 import com.mollases.zombies.pregame.joinablegames.JoinableGamesArrayAdapter;
 import com.mollases.zombies.util.AsyncHelper;
 import com.mollases.zombies.util.DeviceInformation;
+import com.mollases.zombies.util.ZTime;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,10 +37,10 @@ class ReadActiveGames extends AsyncTask<Void, Void, JSONArray> {
 
         try {
 
-            ZombClient client = new ZombClient(ZService.ACTIVE_GAMES);
+            ZombClient client = new ZombClient(ZService.GET_ACTIVE_GAMES);
 
             client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(listFragment.getActivity()));
-            client.add(ZParam.TIMEZONE, String.valueOf(DeviceInformation.getTimeZoneByHourlyOffset()));
+            client.add(ZParam.CURRENT_TIME, new ZTime().toString());
 
             return AsyncHelper.pullJSONArray(client.execute());
         } catch (JSONException e) {

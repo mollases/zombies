@@ -33,7 +33,7 @@ class CreateNewGame extends AsyncTask<String, Void, JSONObject> {
     protected JSONObject doInBackground(String... params) {      // Making HTTP request
         try {
 
-            ZombClient client = new ZombClient(ZService.CREATE_JOINABLE_GAME);
+            ZombClient client = new ZombClient(ZService.CREATE_NEW_GAME);
 
             client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(context));
             client.add(ZParam.TIMEZONE, String.valueOf(DeviceInformation.getTimeZoneByHourlyOffset()));

@@ -32,7 +32,7 @@ class GetLatestInGamePositions extends AsyncTask<Void, Void, JSONArray> {
         try {
             int gameId = DeviceInformation.getInGameId(zombMapFragment);
             if (gameId != -1) {
-                ZombClient client = new ZombClient(ZService.IN_GAME_UPDATE);
+                ZombClient client = new ZombClient(ZService.IN_GAME_UPDATE_MAP);
                 client.add(ZParam.GAME_ID, String.valueOf(gameId));
                 client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(zombMapFragment));
                 return AsyncHelper.pullJSONArray(client.execute());

@@ -51,7 +51,6 @@ public class DeviceInformation {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(CURRENT_GAME_ID, gameId);
         editor.commit();
-
     }
 
     /**

@@ -113,7 +113,6 @@ public class GameSelectorFragment extends Fragment implements View.OnClickListen
 
         alert.setTitle(title);
 
-
         listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, range));
         alert.setView(listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

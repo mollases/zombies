@@ -27,7 +27,7 @@ class CreateNewInGamePosition extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... params) {
         try {
-            ZombClient client = new ZombClient(ZService.IN_GAME_PLAYER_PIN_MAPPER_DATA);
+            ZombClient client = new ZombClient(ZService.IN_GAME_SEND_PLAYER_PIN_LOCATION);
 
             client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(context));
             client.add(ZParam.GAME_ID, DeviceInformation.getInGameIdAsString(context));

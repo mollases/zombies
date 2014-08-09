@@ -15,11 +15,9 @@ import java.util.List;
  */
 public class MenuOptionArrayAdapter extends ArrayAdapter<MenuOption> {
 
-
     public MenuOptionArrayAdapter(final Context context, final int textViewResourceId, final List<MenuOption> objects) {
         super(context, textViewResourceId, objects);
     }
-
 
     public View getView(int position, android.view.View convertView, android.view.ViewGroup parent) {
         final MenuOption menuOption = getItem(position);
@@ -40,7 +38,6 @@ public class MenuOptionArrayAdapter extends ArrayAdapter<MenuOption> {
 
         return view;
     }
-
 
     static class ViewHolder {
         TextView text;

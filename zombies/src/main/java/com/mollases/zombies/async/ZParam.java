@@ -10,7 +10,6 @@ public enum ZParam {
      */
     SERVER_QUERY("m"),
 
-
     /**
      * Device Identifier
      */
@@ -22,11 +21,6 @@ public enum ZParam {
     GAME_ID("game_id"),
 
     /**
-     * Current map identifier
-     */
-    MAP_DATA_ID("map_data_id"),
-
-    /**
      * Current latitude of player
      */
     LATITUDE("lat"),
@@ -35,7 +29,6 @@ public enum ZParam {
      * Current longitude of player
      */
     LONGITUDE("long"),
-
 
     /**
      * Current state of player [1,0]
@@ -52,6 +45,10 @@ public enum ZParam {
      */
     TIMEZONE("tz"),
 
+    /**
+     * Current time
+     */
+    CURRENT_TIME("time"),
 
     /**
      * Title of object
@@ -79,10 +76,10 @@ public enum ZParam {
     /**
      * What the ZParam translates to on the server
      */
-    private String name;
+    private String serverName;
 
-    ZParam(String name) {
-        this.name = name;
+    ZParam(String serverName) {
+        this.serverName = serverName;
     }
 
     /**
@@ -90,8 +87,8 @@ public enum ZParam {
      *
      * @return ZParam's server side name
      */
-    public String getName() {
-        return name;
+    public String getServerName() {
+        return serverName;
     }
 
 }

@@ -28,7 +28,7 @@ public class UpdateJoinableGame extends AsyncTask<Integer, Void, Void> {
     @Override
     protected Void doInBackground(Integer... params) {      // Making HTTP request
         try {
-            ZombClient client = new ZombClient(ZService.UPDATE_JOINABLE_GAME);
+            ZombClient client = new ZombClient(ZService.ADD_REMOVE_PLAYER_FROM_GAME);
 
             client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(context));
             client.add(ZParam.GAME_ID, String.valueOf(params[0]));

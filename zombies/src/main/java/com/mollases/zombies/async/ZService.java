@@ -11,32 +11,15 @@ import java.util.Set;
  * Created by mollases on 5/30/14.
  */
 public enum ZService {
+    /**
+     * Registers a new device with the server
+     */
     REGISTER(true, "register", new ZParam[]{}, true),
 
-    MAPPER(true, "mapper",
-            new ZParam[]{
-                    ZParam.DEVICE_ID,
-                    ZParam.TITLE}, true
-    ),
-
-    MAPPER_DATA(true, "mapperData",
-            new ZParam[]{
-                    ZParam.DEVICE_ID,
-                    ZParam.MAP_DATA_ID,
-                    ZParam.LATITUDE,
-                    ZParam.LONGITUDE}, true
-    ),
-
-    IN_GAME_PLAYER_PIN_MAPPER_DATA(true, "inGameMapperData",
-            new ZParam[]{
-                    ZParam.DEVICE_ID,
-                    ZParam.GAME_ID,
-                    ZParam.LATITUDE,
-                    ZParam.LONGITUDE,
-                    ZParam.STATUS}, true
-    ),
-
-    CREATE_JOINABLE_GAME(true, "createJoinableGame",
+    /**
+     * creates a new game on the server
+     */
+    CREATE_NEW_GAME(true, "createJoinableGame",
             new ZParam[]{
                     ZParam.DEVICE_ID,
                     ZParam.TIMEZONE,
@@ -47,44 +30,60 @@ public enum ZService {
                     ZParam.MAX_PLAYERS}, false
     ),
 
-    UPDATE_JOINABLE_GAME(true, "updateJoinableGame",
+    /**
+     * updates game, tells if device has joined game or opted out of joined game
+     */
+    ADD_REMOVE_PLAYER_FROM_GAME(true, "updateJoinableGame",
             new ZParam[]{
                     ZParam.DEVICE_ID,
                     ZParam.GAME_ID,
                     ZParam.STATE}, true
     ),
 
-
-    MAPPER_LIST(false, "mapperList",
-            new ZParam[]{
-                    ZParam.DEVICE_ID}, true
-    ),
-
-    MAPPER_DATA_LIST(false, "mapperDataList",
+    /**
+     * finds games that are active and have been joined by device
+     */
+    GET_ACTIVE_GAMES(true, "activeGames",
             new ZParam[]{
                     ZParam.DEVICE_ID,
-                    ZParam.MAP_DATA_ID}, true
+                    ZParam.CURRENT_TIME}, false
     ),
 
-    ACTIVE_GAMES(false, "activeGames",
+    /**
+     * finds games that have not started
+     */
+    GET_JOINABLE_GAMES(true, "joinableGames",
             new ZParam[]{
                     ZParam.DEVICE_ID,
-                    ZParam.TIMEZONE}, false
+                    ZParam.CURRENT_TIME}, false
     ),
 
-    JOINABLE_GAMES(false, "joinableGames",
-            new ZParam[]{
-                    ZParam.DEVICE_ID,
-                    ZParam.TIMEZONE}, false
-    ),
-
-    IN_GAME_UPDATE(false, "inGameUpdate",
+    /**
+     * requests new status from server for game
+     * device id is needed so no duplicate information is passed
+     */
+    IN_GAME_UPDATE_MAP(false, "inGameUpdate",
             new ZParam[]{
                     ZParam.DEVICE_ID,
                     ZParam.GAME_ID}, true
     ),
 
-    IN_GAME_UPDATE_PLAYER_PIN(false, "updatePlayerPin",
+    /**
+     * tells playing map where device is while game is active
+     */
+    IN_GAME_SEND_PLAYER_PIN_LOCATION(true, "inGameMapperData",
+            new ZParam[]{
+                    ZParam.DEVICE_ID,
+                    ZParam.GAME_ID,
+                    ZParam.LATITUDE,
+                    ZParam.LONGITUDE,
+                    ZParam.STATUS}, true
+    ),
+
+    /**
+     * gets device's location according to the server
+     */
+    IN_GAME_RETRIEVE_PLAYER_PIN_LOCATION(false, "updatePlayerPin",
             new ZParam[]{
                     ZParam.DEVICE_ID,
                     ZParam.GAME_ID}, true
@@ -95,10 +94,10 @@ public enum ZService {
      */
     private final static String TAG = ZombClient.class.getName();
 
-    final boolean post;
-    final boolean fullyImplemented;
-    final Set<ZParam> requiredZParams;
-    final String method;
+    final private boolean post;
+    final private boolean fullyImplemented;
+    final private Set<ZParam> requiredZParams;
+    final private String method;
 
     ZService(boolean post, String method, ZParam[] requiredZParams, boolean fullyImplemented) {
         this.post = post;
@@ -112,7 +111,7 @@ public enum ZService {
      *
      * @return true if yes
      */
-    boolean isPost() {
+    public boolean isPost() {
         return post;
     }
 
@@ -121,7 +120,7 @@ public enum ZService {
      *
      * @param data the map to add this call to
      */
-    void addMethodCall(Map<ZParam, String> data) {
+    public void addMethodCall(Map<ZParam, String> data) {
         data.put(ZParam.SERVER_QUERY, method);
     }
 
@@ -131,7 +130,7 @@ public enum ZService {
      *
      * @param data the map to check
      */
-    void assertValidity(Map<ZParam, String> data) {
+    public void assertValidity(Map<ZParam, String> data) {
         if (!fullyImplemented) {
             Log.w(TAG, method + " not fully implemented!");
         }

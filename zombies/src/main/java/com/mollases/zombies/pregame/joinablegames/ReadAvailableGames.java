@@ -9,6 +9,7 @@ import com.mollases.zombies.async.ZService;
 import com.mollases.zombies.async.ZombClient;
 import com.mollases.zombies.util.AsyncHelper;
 import com.mollases.zombies.util.DeviceInformation;
+import com.mollases.zombies.util.ZTime;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,10 +34,10 @@ class ReadAvailableGames extends AsyncTask<Void, Void, JSONArray> {
     protected JSONArray doInBackground(final Void... voids) {
         JSONArray array = new JSONArray();
         try {
-            ZombClient client = new ZombClient(ZService.JOINABLE_GAMES);
+            ZombClient client = new ZombClient(ZService.GET_JOINABLE_GAMES);
 
             client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(listFragment.getActivity()));
-            client.add(ZParam.TIMEZONE, String.valueOf(DeviceInformation.getTimeZoneByHourlyOffset()));
+            client.add(ZParam.CURRENT_TIME, new ZTime().toString());
 
             array = AsyncHelper.pullJSONArray(client.execute());
 

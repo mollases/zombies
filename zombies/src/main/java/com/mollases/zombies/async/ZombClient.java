@@ -95,7 +95,7 @@ public class ZombClient {
             ArrayList<NameValuePair> postParameters;
             postParameters = new ArrayList<NameValuePair>();
             for (Map.Entry<ZParam, String> entry : data.entrySet()) {
-                postParameters.add(new BasicNameValuePair(entry.getKey().getName(), entry.getValue()));
+                postParameters.add(new BasicNameValuePair(entry.getKey().getServerName(), entry.getValue()));
             }
             ((HttpPost) base).setEntity(new UrlEncodedFormEntity(postParameters));
 
@@ -103,7 +103,7 @@ public class ZombClient {
             String completeUrl = ZOMB_URL + INITIAL_QUERY;
 
             for (Map.Entry<ZParam, String> entry : data.entrySet()) {
-                completeUrl += entry.getKey().getName() + EQUALS + entry.getValue() + APPEND;
+                completeUrl += entry.getKey().getServerName() + EQUALS + entry.getValue() + APPEND;
             }
             completeUrl = completeUrl.substring(0, completeUrl.length() - 1);
 
