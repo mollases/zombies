@@ -11,7 +11,7 @@
     <string name="new_game_label">New Game</string>
     <string name="saved_game_label">Saved Game</string>
     <string name="new_game_where_label">Where</string>
-    <string name="new_game_where_value">Eagan, MN</string>
+    <string name="new_game_where_value">Set me!</string>
     <string name="new_game_when_label">Day</string>
     <string name="new_game_when_value">5/14/2014</string>
     <string name="new_game_from_label">From</string>

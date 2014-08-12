@@ -17,8 +17,9 @@ public class ZTime {
 
     private final GregorianCalendar calendar;
 
-    public ZTime(){
+    public ZTime() {
         calendar = new GregorianCalendar();
+        calendar.set(GregorianCalendar.MONTH,calendar.get(GregorianCalendar.MONTH) + 1);
     }
 
 

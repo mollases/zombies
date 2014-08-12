@@ -3,6 +3,9 @@ package com.mollases.zombies.pregame.locationanalyzer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -16,6 +19,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mollases.zombies.R;
+import com.mollases.zombies.pregame.PreGameActivities;
+
+import java.io.IOException;
 
 /**
  * Created by mollases on 4/11/14.
@@ -32,13 +38,14 @@ import com.mollases.zombies.R;
 public class ZombMapLocationAnalyzer extends Activity {
     private String TAG = ZombMapLocationAnalyzer.class.getName();
 
-    private double DEFAULT_DELTA = 200D; // 200 meters
+    private double DEFAULT_DELTA = 500D; // 500 meters
 
     private MapView mMapView;
     private GoogleMap mMap;
     private Marker marker;
     private Circle circle;
     private double delta;
+    private boolean initializedByGameSelector;
 
     public static double haversine(double lat1, double lon1, double lat2, double lon2) {
         double r = 6731000;
@@ -58,11 +65,16 @@ public class ZombMapLocationAnalyzer extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_analyzer);
 
+        initializedByGameSelector = getIntent().getExtras().getBoolean("set_location", false);
+        if (initializedByGameSelector) {
+            findViewById(R.id.swipe_for_options).setVisibility(View.INVISIBLE);
+            findViewById(R.id.save_the_ring).setVisibility(View.INVISIBLE);
+        }
+
         mMapView = (MapView) findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
 
         setUpMapIfNeeded();
-
     }
 
     @Override
@@ -88,7 +100,6 @@ public class ZombMapLocationAnalyzer extends Activity {
     }
 
     private void resetMap() {
-
         mMap.getUiSettings().setAllGesturesEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(false);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
@@ -145,7 +156,7 @@ public class ZombMapLocationAnalyzer extends Activity {
         MapsInitializer.initialize(this);
     }
 
-    private double setToDefaultDelta(){
+    private double setToDefaultDelta() {
         delta = DEFAULT_DELTA;
         return delta;
     }
@@ -177,11 +188,26 @@ public class ZombMapLocationAnalyzer extends Activity {
         final View v = View.inflate(this, R.layout.view_store_ring_detail, null);
         ((TextView) v.findViewById(R.id.view_store_ring_detail_ring_size_value)).setText(String.valueOf(delta));
 
+        // Attempt to name the current location's city
+        try {
+            Address address = new Geocoder(this).getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1).get(0);
+            ((TextView) v.findViewById(R.id.view_store_ring_detail_title)).setText(address.getLocality());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         alert.setView(v);
 
         alert.setPositiveButton(R.string.view_store_ring_detail_verify, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String title = ((TextView) v.findViewById(R.id.view_store_ring_detail_title)).getText().toString();
+
+                Intent i = new Intent(getApplicationContext(), PreGameActivities.class);
+                i.putExtra("title", title);
+                i.putExtra("lat", marker.getPosition().latitude);
+                i.putExtra("long", marker.getPosition().longitude);
+                i.putExtra("delta", delta);
+                startActivity(i);
             }
         });
 

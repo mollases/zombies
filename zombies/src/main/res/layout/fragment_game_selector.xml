@@ -5,6 +5,11 @@
 
     tools:context="com.mollases.zombies.pregame.newgame.GameSelectorFragment">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
         <TableLayout
             android:id="@+id/game_selector_new_game_table"
             android:layout_width="wrap_content"
@@ -167,15 +172,18 @@
                     android:text="@string/new_game_max_players_value"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
-
-            <TextView
-                android:id="@+id/game_selector_new_game_next"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:height="40dp"
-                android:gravity="center"
-                android:text="@string/new_game_next_label"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/selectable_brown" />
         </TableLayout>
+
+
+        <TextView
+            android:id="@+id/game_selector_new_game_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="40dp"
+            android:gravity="center"
+            android:text="@string/new_game_next_label"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/selectable_brown" />
+
+    </LinearLayout>
 </ScrollView>

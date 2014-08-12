@@ -33,7 +33,7 @@ class ZombLocationListenerClient implements LocationListener,
     public void onLocationChanged(Location l2) {
         PlayerPin playerPin = pins.getPlayerPin(false);
 
-        if(playerPin == null) return;
+        if (playerPin == null) return;
         playerPin.setLat(l2.getLatitude());
         playerPin.setLong(l2.getLongitude());
         new CreateNewInGamePosition(context).execute(

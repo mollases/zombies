@@ -27,7 +27,11 @@ public enum ZService {
                     ZParam.LOCATION,
                     ZParam.FROM_TIME,
                     ZParam.UNTIL_TIME,
-                    ZParam.MAX_PLAYERS}, false
+                    ZParam.MAX_PLAYERS,
+                    ZParam.MAP_TITLE,
+                    ZParam.MAP_DELTA,
+                    ZParam.LATITUDE,
+                    ZParam.LONGITUDE}, false
     ),
 
     /**

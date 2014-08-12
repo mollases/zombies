@@ -71,7 +71,18 @@ public enum ZParam {
     /**
      * Maximum players being used
      */
-    MAX_PLAYERS("max");
+    MAX_PLAYERS("max"),
+
+    /**
+     * When making a new game, map_title is the maps title
+     */
+    MAP_TITLE("map_title"),
+
+    /**
+     * When making a new game, map_delta is the maps radius
+     */
+    MAP_DELTA("map_delta");
+
 
     /**
      * What the ZParam translates to on the server

@@ -38,8 +38,8 @@ public class Pin {
      * Initializes a player, along with their corresponding marker position
      *
      * @param type type of pin
-     * @param lat latitude on the gmap
-     * @param lng longitude on the gmap
+     * @param lat  latitude on the gmap
+     * @param lng  longitude on the gmap
      */
     public Pin(Type type, double lat, double lng) {
         this.type = type;

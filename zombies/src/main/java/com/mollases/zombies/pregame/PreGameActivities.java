@@ -27,8 +27,7 @@ import com.mollases.zombies.util.DeviceInformation;
 import java.util.ArrayList;
 
 
-
-public class PreGameActivities extends Activity {
+public class PreGameActivities extends Activity implements GameSelectorFragment.OnLocationSaved {
     private static final String TAG = PreGameActivities.class.getName();
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -38,6 +37,11 @@ public class PreGameActivities extends Activity {
     // used to store app title
     private CharSequence mTitle;
 
+    // For GameSelectorFragment;
+    private String gsfTitle;
+    private double gsfLat;
+    private double gsfLong;
+    private double gsfDelta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +93,17 @@ public class PreGameActivities extends Activity {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        if (savedInstanceState == null) {
+        // set up watchers
+        if(getIntent().getExtras() != null){
+            gsfTitle = getIntent().getExtras().getString("title");
+            gsfLat = getIntent().getExtras().getDouble("lat");
+            gsfLong = getIntent().getExtras().getDouble("long");
+            gsfDelta = getIntent().getExtras().getDouble("delta");
+        }
+
+        if(gsfDelta != 0){
+            displayView(MenuOption.GAME_CREATOR,false);
+        } else if (savedInstanceState == null) {
             // on first time display view for first nav item
             displayView(MenuOption.GAME_ACTIVE_VIEWER, false);
         }
@@ -180,6 +194,26 @@ public class PreGameActivities extends Activity {
             // error in creating fragment
             Log.e(TAG, "Error in creating fragment");
         }
+    }
+
+    @Override
+    public String locationSavedTitle() {
+        return gsfTitle;
+    }
+
+    @Override
+    public double locationSavedLatitude() {
+        return gsfLat;
+    }
+
+    @Override
+    public double locationSavedLongitude() {
+        return gsfLong;
+    }
+
+    @Override
+    public double locationSavedDelta() {
+        return gsfDelta;
     }
 
 

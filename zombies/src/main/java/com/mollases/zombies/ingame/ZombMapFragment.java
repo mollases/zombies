@@ -62,7 +62,7 @@ public class ZombMapFragment extends Activity {
 
 
         regId = DeviceInformation.getRegistrationId(this);
-        players = new PinSet(this,regId);
+        players = new PinSet(this, regId);
         final ZombLocationListenerClient zombLocationListenerClient = new ZombLocationListenerClient(this, players);
 
         DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.side_menu_drawer);

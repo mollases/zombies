@@ -42,6 +42,10 @@ class CreateNewGame extends AsyncTask<String, Void, JSONObject> {
             client.add(ZParam.FROM_TIME, params[2]);
             client.add(ZParam.UNTIL_TIME, params[3]);
             client.add(ZParam.MAX_PLAYERS, params[4]);
+            client.add(ZParam.MAP_TITLE, params[5]);
+            client.add(ZParam.MAP_DELTA, params[6]);
+            client.add(ZParam.LATITUDE, params[7]);
+            client.add(ZParam.LONGITUDE, params[8]);
             return AsyncHelper.pullJSONObject(client.execute());
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,8 +58,9 @@ class CreateNewGame extends AsyncTask<String, Void, JSONObject> {
     @Override
     protected void onPostExecute(final JSONObject result) {
         try {
-            new UpdateJoinableGame(context,true).execute(result.getInt("id"));
-            Toast.makeText(context,"You've auto joined this game",Toast.LENGTH_SHORT).show();
+            new UpdateJoinableGame(context, true).execute(result.getInt("id"));
+            Toast.makeText(context, "Game created.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Auto-joining this game..", Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             e.printStackTrace();
         }

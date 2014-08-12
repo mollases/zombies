@@ -79,6 +79,6 @@ public class PlayerPin extends Pin {
         } else {
             warningCount++;
         }
-        new UpdateInGameUI(activity, type, (int)(( (double)warningCount / (double)conversionNumber) * 100)).execute();
+        new UpdateInGameUI(activity, type, (int) (((double) warningCount / (double) conversionNumber) * 100)).execute();
     }
 }
