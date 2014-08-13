@@ -115,10 +115,13 @@ public class Pin {
         }
 
         if (resourceId != 0) {
+            marker.setVisible(true);
             marker.setIcon(BitmapDescriptorFactory.fromResource(resourceId));
+            marker.setTitle(type.name());
+        } else {
+            marker.setVisible(false);
         }
 
-        marker.setTitle(type.name());
     }
 
     public Type getType() {

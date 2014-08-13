@@ -85,7 +85,7 @@ public class GameSelectorFragment extends Fragment implements View.OnClickListen
 
     private void onPlaceChanged(View view) {
         Intent i = new Intent(getActivity(), ZombMapLocationAnalyzer.class);
-        i.putExtra("set_location", "true");
+        i.putExtra("set_location", true);
         startActivity(i);
     }
 

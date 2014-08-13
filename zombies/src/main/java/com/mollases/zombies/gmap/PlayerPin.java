@@ -13,8 +13,8 @@ import com.mollases.zombies.ingame.UpdateInGameUI;
 public class PlayerPin extends Pin {
     public final static int conversionToZombie = 5;
     public final static int conversionToObserver = 15;
-    public final static double distanceForZombie = 0.22;
-    public final static double distanceForHuman = 0.35;
+    public final static double distanceForZombie = 2.5;
+    public final static double distanceForHuman = 4.5;
     public final static double EARTH_RADIUS_METERS = 6371000.0D;
     private static final String TAG = PlayerPin.class.getName();
     private int warningCount = 0;

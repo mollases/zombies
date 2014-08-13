@@ -49,6 +49,7 @@ public class ZombMapFragment extends Activity {
     private GoogleMap mMap;
     private PinSet players;
     private int regId;
+    private boolean runAsyncQuery;
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -122,6 +123,7 @@ public class ZombMapFragment extends Activity {
 
     @Override
     public void onResume() {
+        runAsyncQuery = true;
         new UpdatePlayerPinLocation(this).execute();
         mMapView.onResume();
         super.onResume();
@@ -132,6 +134,7 @@ public class ZombMapFragment extends Activity {
         Runnable queryServer = new Runnable() {
             @Override
             public void run() {
+                if(runAsyncQuery)
                 handler.postDelayed(this, 5000L);
                 new GetLatestInGamePositions(that).execute();
             }
@@ -142,6 +145,7 @@ public class ZombMapFragment extends Activity {
 
     @Override
     public void onPause() {
+        runAsyncQuery = false;
         mMapView.onPause();
         super.onPause();
     }

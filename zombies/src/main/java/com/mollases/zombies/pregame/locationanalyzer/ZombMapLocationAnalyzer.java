@@ -45,7 +45,6 @@ public class ZombMapLocationAnalyzer extends Activity {
     private Marker marker;
     private Circle circle;
     private double delta;
-    private boolean initializedByGameSelector;
 
     public static double haversine(double lat1, double lon1, double lat2, double lon2) {
         double r = 6731000;
@@ -65,10 +64,10 @@ public class ZombMapLocationAnalyzer extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_analyzer);
 
-        initializedByGameSelector = getIntent().getExtras().getBoolean("set_location", false);
-        if (initializedByGameSelector) {
+        // if it was initialized by the new game selector
+        if (getIntent().getExtras() == null || !getIntent().getExtras().getBoolean("set_location")) {
             findViewById(R.id.swipe_for_options).setVisibility(View.INVISIBLE);
-            findViewById(R.id.save_the_ring).setVisibility(View.INVISIBLE);
+            findViewById(R.id.save_the_ring).setVisibility(View.GONE);
         }
 
         mMapView = (MapView) findViewById(R.id.map);
