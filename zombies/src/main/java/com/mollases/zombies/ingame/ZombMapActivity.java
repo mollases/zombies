@@ -1,15 +1,10 @@
 package com.mollases.zombies.ingame;
 
 import android.app.Activity;
-import android.content.res.Configuration;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
@@ -20,9 +15,9 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.mollases.zombies.R;
 import com.mollases.zombies.gmap.Pin;
 import com.mollases.zombies.gmap.PinSet;
+import com.mollases.zombies.postgame.GameStatus;
 import com.mollases.zombies.util.DeviceInformation;
-
-import java.util.ArrayList;
+import com.mollases.zombies.util.ZTime;
 
 /**
  * Created by mollases on 4/11/14.
@@ -36,14 +31,13 @@ import java.util.ArrayList;
  * and the querier begins recording data
  * until they stop the activity or stop recording
  */
-public class ZombMapFragment extends Activity {
+public class ZombMapActivity extends Activity {
 
     private static final Long ONE_SECOND = 1000L;
     private static final int FIVE = 5;
     private static final int THIRTY = 30;
-    private static final String TAG = ZombMapFragment.class.getName();
+    private static final String TAG = ZombMapActivity.class.getName();
     private final Handler handler = new Handler();
-    private ActionBarDrawerToggle mDrawerToggle;
     private LocationClient lc;
     private MapView mMapView;
     private GoogleMap mMap;
@@ -63,42 +57,8 @@ public class ZombMapFragment extends Activity {
 
 
         regId = DeviceInformation.getRegistrationId(this);
-        players = new PinSet(this, regId);
+        players = new PinSet(this,regId);
         final ZombLocationListenerClient zombLocationListenerClient = new ZombLocationListenerClient(this, players);
-
-        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.side_menu_drawer);
-        ListView mDrawerList = (ListView) findViewById(R.id.side_menu_list);
-
-        ArrayList<String> navDrawerItems = new ArrayList<String>();
-        navDrawerItems.add("test");
-        ArrayAdapter<String> mDrawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navDrawerItems);
-        mDrawerList.setAdapter(mDrawerAdapter);
-
-
-        // enabling action bar app icon and behaving it as toggle button
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.abc_ab_bottom_solid_dark_holo, //nav menu toggle icon
-                R.string.app_name,
-                // nav drawer open - description for accessibility
-                R.string.app_name
-                // nav drawer close - description for accessibility
-        ) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                // calling onPrepareOptionsMenu() to hide action bar icons
-                invalidateOptionsMenu();
-            }
-
-
-            @Override
-            public void onDrawerClosed(View view) {
-                // calling onPrepareOptionsMenu() to show action bar icons
-                invalidateOptionsMenu();
-            }
-        };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         final LocationRequest lr = LocationRequest.create();
 
@@ -107,7 +67,6 @@ public class ZombMapFragment extends Activity {
         lr.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         lc = new LocationClient(this, zombLocationListenerClient, zombLocationListenerClient);
 
-        lc.connect();
         lc.registerConnectionCallbacks(new GooglePlayServicesClient.ConnectionCallbacks() {
             @Override
             public void onConnected(Bundle bundle) {
@@ -119,17 +78,35 @@ public class ZombMapFragment extends Activity {
                 lc.removeLocationUpdates(zombLocationListenerClient);
             }
         });
+
+        final String tilTime = getIntent().getExtras().getString("until_time");
+        final ZTime currentTime = new ZTime();
+
+        final Context that = this;
+
+        Runnable onGameEnd = new Runnable() {
+            @Override
+            public void run() {
+                Intent i = new Intent(that, GameStatus.class);
+                i.putExtra("player_pin_finished_type", players.getPlayerPin().getType());
+                i.putExtra("start_time",currentTime.toString());
+                i.putExtra("end_time",tilTime);
+                startActivity(i);
+            }
+        };
+
+        handler.postDelayed(onGameEnd, currentTime.timeUntil(tilTime));
     }
 
     @Override
     public void onResume() {
+        lc.connect();
         runAsyncQuery = true;
         new UpdatePlayerPinLocation(this).execute();
         mMapView.onResume();
         super.onResume();
         setUpMapIfNeeded();
-        mDrawerToggle.syncState();
-        final ZombMapFragment that = this;
+        final ZombMapActivity that = this;
 
         Runnable queryServer = new Runnable() {
             @Override
@@ -145,6 +122,7 @@ public class ZombMapFragment extends Activity {
 
     @Override
     public void onPause() {
+        lc.disconnect();
         runAsyncQuery = false;
         mMapView.onPause();
         super.onPause();
@@ -184,31 +162,6 @@ public class ZombMapFragment extends Activity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mMapView.onSaveInstanceState(outState);
-    }
-
-
-    /**
-     * When using the ActionBarDrawerToggle, you must call it during onPostCreate() and
-     * onConfigurationChanged()...
-     */
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggls
-        mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // toggle nav drawer on selecting action bar app icon/title
-        return mDrawerToggle.onOptionsItemSelected(item);
     }
 
     public void scanMap() {

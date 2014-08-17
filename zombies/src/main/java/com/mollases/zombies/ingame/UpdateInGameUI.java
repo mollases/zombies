@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.mollases.zombies.R;
 import com.mollases.zombies.gmap.Pin;
 
-
 /**
  * Created by mollases on 5/28/14.
  */

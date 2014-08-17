@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mollases.zombies.R;
-import com.mollases.zombies.ingame.ZombMapFragment;
+import com.mollases.zombies.ingame.ZombMapActivity;
 import com.mollases.zombies.pregame.joinablegames.JoinableGame;
 import com.mollases.zombies.util.DeviceInformation;
 
@@ -57,7 +57,9 @@ public class ActiveGamesFragment extends ListFragment {
         alert.setPositiveButton(R.string.view_active_games_detail_accept, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 DeviceInformation.storeCurrentlyActiveGame(getActivity(), game.getId());
-                startActivity(new Intent(getActivity(), ZombMapFragment.class));
+                Intent i = new Intent(getActivity(), ZombMapActivity.class);
+                i.putExtra("until_time", game.getEndTimestamp());
+                startActivity(i);
             }
         });
 

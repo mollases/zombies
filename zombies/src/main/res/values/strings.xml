@@ -2,12 +2,10 @@
 <resources>
 
     <string name="app_name">Zombies!</string>
-
     <string name="got_it">Got it, Thanks.</string>
     <string name="update_location">update location</string>
     <string name="location">location</string>
     <string name="title_activity_pre_game_activities">PreGameActivities</string>
-
     <string name="new_game_label">New Game</string>
     <string name="saved_game_label">Saved Game</string>
     <string name="new_game_where_label">Where</string>
@@ -28,7 +26,6 @@
     <string name="view_joinable_games_detail_accept">Join In</string>
     <string name="view_joinable_games_detail_decline">Decline</string>
     <string name="in_game_current_pin_type">human</string>
-
     <string name="lctn_nlzr_how_to">How To\'s:</string>
     <string name="lctn_nlzr_ht_new_marker">Create the Marker</string>
     <string name="lctn_nlzr_ht_remove_marker">Remove the Marker</string>
@@ -45,5 +42,14 @@
     <string name="view_store_ring_detail_ring_size_label">Field size (meters)</string>
     <string name="view_store_ring_detail_ring_size_value">200</string>
     <string name="view_store_ring_detail_verify">Looks Good</string>
+    <string name="title_activity_game_status">GameStatus</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

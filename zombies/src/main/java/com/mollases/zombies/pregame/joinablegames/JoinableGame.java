@@ -57,7 +57,7 @@ public class JoinableGame {
 
 
     public String getGameDate() {
-        return gameStartTime.getDisplayDate();
+        return gameEndTime.getDisplayDate();
     }
 
     public int getGameCurrentPlayers() {
@@ -70,5 +70,9 @@ public class JoinableGame {
 
     public int getGameMaxPlayers() {
         return gameMaxPlayers;
+    }
+
+    public String getEndTimestamp() {
+        return gameEndTime.toString();
     }
 }

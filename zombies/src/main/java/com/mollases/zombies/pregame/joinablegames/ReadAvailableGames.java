@@ -62,7 +62,7 @@ class ReadAvailableGames extends AsyncTask<Void, Void, JSONArray> {
                         obj.getInt("id"),
                         obj.optBoolean("selected", false),
                         obj.getString("title"),
-                        obj.optString("place"),
+                        obj.optString("map_title"),
                         obj.getString("start_time"),
                         obj.getString("end_time"),
                         obj.getInt("current_players"),

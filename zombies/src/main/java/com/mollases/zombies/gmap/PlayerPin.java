@@ -11,10 +11,10 @@ import com.mollases.zombies.ingame.UpdateInGameUI;
  * Created by mollases on 5/18/14.
  */
 public class PlayerPin extends Pin {
-    public final static int conversionToZombie = 5;
-    public final static int conversionToObserver = 15;
-    public final static double distanceForZombie = 2.5;
-    public final static double distanceForHuman = 4.5;
+    private final static int CONVERSION_TO_ZOMBIE = 5;
+    private final static int CONVERSION_TO_OBSERVER = 15;
+    private final static double DISTANCE_FOR_ZOMBIE = 2.5;
+    private final static double DISTANCE_FOR_HUMAN = 4.5;
     public final static double EARTH_RADIUS_METERS = 6371000.0D;
     private static final String TAG = PlayerPin.class.getName();
     private int warningCount = 0;
@@ -44,7 +44,7 @@ public class PlayerPin extends Pin {
     }
 
     public boolean isTooCloseTo(Pin otherPin) {
-        double distance = otherPin.isZombie() ? distanceForZombie : distanceForHuman;
+        double distance = otherPin.isZombie() ? DISTANCE_FOR_ZOMBIE : DISTANCE_FOR_HUMAN;
         double delta = getDistanceBetween(otherPin);
         return delta <= distance;
     }
@@ -60,9 +60,9 @@ public class PlayerPin extends Pin {
 
     public void calculateNewState(int humanCounter, int zombieCounter) {
         if (isHuman()) {
-            updateState(Type.ZOMBIE, zombieCounter - humanCounter, conversionToZombie);
+            updateState(Type.ZOMBIE, zombieCounter - humanCounter, CONVERSION_TO_ZOMBIE);
         } else if (isZombie()) {
-            updateState(Type.OBSERVER, humanCounter - zombieCounter, conversionToObserver);
+            updateState(Type.OBSERVER, humanCounter - zombieCounter, CONVERSION_TO_OBSERVER);
         }
     }
 

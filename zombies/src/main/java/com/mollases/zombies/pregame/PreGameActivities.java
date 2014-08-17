@@ -70,7 +70,7 @@ public class PreGameActivities extends Activity implements GameSelectorFragment.
         // enabling action bar app icon and behaving it as toggle button
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.abc_ab_bottom_solid_dark_holo, //nav menu toggle icon
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, //nav menu toggle icon
                 R.string.app_name,
                 // nav drawer open - description for accessibility
                 R.string.app_name

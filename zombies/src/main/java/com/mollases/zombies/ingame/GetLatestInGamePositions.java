@@ -20,21 +20,21 @@ import java.io.IOException;
  */
 class GetLatestInGamePositions extends AsyncTask<Void, Void, JSONArray> {
     private final static String TAG = GetLatestInGamePositions.class.getName();
-    private final ZombMapFragment zombMapFragment;
+    private final ZombMapActivity zombMapActivity;
 
-    public GetLatestInGamePositions(ZombMapFragment zombMapFragment) {
-        this.zombMapFragment = zombMapFragment;
+    public GetLatestInGamePositions(ZombMapActivity zombMapActivity) {
+        this.zombMapActivity = zombMapActivity;
     }
 
 
     @Override
     protected JSONArray doInBackground(Void... params) {
         try {
-            int gameId = DeviceInformation.getInGameId(zombMapFragment);
+            int gameId = DeviceInformation.getInGameId(zombMapActivity);
             if (gameId != -1) {
                 ZombClient client = new ZombClient(ZService.IN_GAME_UPDATE_MAP);
                 client.add(ZParam.GAME_ID, String.valueOf(gameId));
-                client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(zombMapFragment));
+                client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(zombMapActivity));
                 return AsyncHelper.pullJSONArray(client.execute());
             }
         } catch (JSONException e) {
@@ -58,10 +58,10 @@ class GetLatestInGamePositions extends AsyncTask<Void, Void, JSONArray> {
                 double lat = obj.getDouble("latitude");
                 double lng = obj.getDouble("longitude");
 
-                zombMapFragment.updatePin(id, type, lat, lng);
+                zombMapActivity.updatePin(id, type, lat, lng);
 
             }
-            zombMapFragment.scanMap();
+            zombMapActivity.scanMap();
         } catch (JSONException e) {
             e.printStackTrace();
         }

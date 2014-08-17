@@ -19,20 +19,20 @@ import java.io.IOException;
  */
 public class UpdatePlayerPinLocation extends AsyncTask<Void, Void, JSONObject> {
     private final static String TAG = UpdatePlayerPinLocation.class.getName();
-    private final ZombMapFragment zombMapFragment;
+    private final ZombMapActivity zombMapActivity;
 
-    public UpdatePlayerPinLocation(ZombMapFragment zombMapFragment) {
-        this.zombMapFragment = zombMapFragment;
+    public UpdatePlayerPinLocation(ZombMapActivity zombMapActivity) {
+        this.zombMapActivity = zombMapActivity;
     }
 
 
     @Override
     protected JSONObject doInBackground(Void... params) {
         try {
-            int gameId = DeviceInformation.getInGameId(zombMapFragment);
+            int gameId = DeviceInformation.getInGameId(zombMapActivity);
             if (gameId != -1) {
                 ZombClient client = new ZombClient(ZService.IN_GAME_RETRIEVE_PLAYER_PIN_LOCATION);
-                client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(zombMapFragment));
+                client.add(ZParam.DEVICE_ID, DeviceInformation.getRegistrationIdAsString(zombMapActivity));
                 client.add(ZParam.GAME_ID, String.valueOf(gameId));
                 return AsyncHelper.pullJSONObject(client.execute());
             }
@@ -47,7 +47,7 @@ public class UpdatePlayerPinLocation extends AsyncTask<Void, Void, JSONObject> {
 
     @Override
     protected void onPostExecute(final JSONObject obj) {
-        zombMapFragment.setPlayerPin(
+        zombMapActivity.setPlayerPin(
                 Pin.Type.getTypeByAssociatedNumber(obj.optInt("status")),
                 obj.optDouble("latitude", 0L),
                 obj.optDouble("longitude", 0L)

@@ -19,21 +19,23 @@ public class ZTime {
 
     public ZTime() {
         calendar = new GregorianCalendar();
-        calendar.set(GregorianCalendar.MONTH,calendar.get(GregorianCalendar.MONTH) + 1);
+        calendar.set(GregorianCalendar.MONTH, calendar.get(GregorianCalendar.MONTH) + 1);
     }
 
 
     public ZTime(String time) {
-        String[] fields = time.split(" ");
+        int year, month, day, hour, minute;
 
+        String[] fields = time.split(" ");
         String[] ymd = fields[0].split("-");
         String[] hms = fields[1].split(":");
 
-        int year = Integer.valueOf(ymd[YEAR]);
-        int month = Integer.valueOf(ymd[MONTH]);
-        int day = Integer.valueOf(ymd[DAY]);
-        int hour = Integer.valueOf(hms[HOUR]);
-        int minute = Integer.valueOf(hms[MINUTE]);
+        year = Integer.valueOf(ymd[YEAR]);
+        month = Integer.valueOf(ymd[MONTH]);
+        day = Integer.valueOf(ymd[DAY]);
+
+        hour = Integer.valueOf(hms[HOUR]);
+        minute = Integer.valueOf(hms[MINUTE]);
 
         calendar = new GregorianCalendar(year, month, day, hour, minute, 0);
     }
@@ -98,6 +100,12 @@ public class ZTime {
 
     public int compare(ZTime zTime) {
         return calendar.compareTo(zTime.calendar);
+    }
+
+    public long timeUntil(String time) {
+        ZTime until = new ZTime(time);
+        long millis = until.calendar.getTimeInMillis() - calendar.getTimeInMillis();
+        return millis;
     }
 
     private enum Month {
